@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Techcard = ({ tech }) => {
+const Techcard = ({ tech, handleAdd }) => {
     return (
        <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
             <div className="flex items-center justify-between">
@@ -19,7 +19,7 @@ const Techcard = ({ tech }) => {
                 <span>⭐ {tech.rating}</span>
             </div>
 
-            <button className="mt-4 w-full bg-slate-900 text-white text-sm py-2 rounded-lg hover:bg-slate-700">
+            <button className="mt-4 w-full bg-slate-900 text-white text-sm py-2 rounded-lg hover:bg-slate-700" onClick={() => handleAdd(tech)}>
                 Add to Stack
             </button>
         </div>
