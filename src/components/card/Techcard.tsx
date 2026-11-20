@@ -1,5 +1,3 @@
-import React from 'react';
-
 
 const Techcard = ({ tech, handleAdd }) => {
     return (

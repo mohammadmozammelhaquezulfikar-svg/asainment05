@@ -1,23 +1,31 @@
 import { use, useState } from "react";
 import Techcard from "./card/Techcard";
 import YourStack from "./YourStack";
+import { toast } from "react-toastify";
+import type { ITechnology } from "../technology";
 
-const Cardsection = ({ playersPromise }) => {
+interface PlayersPromise {
+    PlayersPromise: Promise<ITechnology[]>;
+}
+
+const Cardsection = ({ playersPromise }: PlayersPromise) => {
     const players = use(playersPromise);
 
-    const [stack, setStack] = useState([]);
+    const [stack, setStack] = useState<ITechnology[]>([]);
 
-    const handleAdd = (tech) => {
-        const alreadyAdded = stack.some((item) => item.id === tech.id);
+    const handleAdd = (tech: ITechnology) => {
+    const alreadyAdded = stack.some((item) => item.id === tech.id);
 
-        if (alreadyAdded) {
-            return;
-        }
+    if (alreadyAdded) {
+        toast.warning(`${tech.name} is already in your stack`);
+        return;
+    }
 
-        setStack([...stack, tech]);
-    };
+    setStack([...stack, tech]);
+    toast.success(`${tech.name} added to stack`);
+};
 
-    const handleRemove = (id) => {
+    const handleRemove = (id: number) => {
         setStack(stack.filter((item) => item.id !== id));
     };
 
